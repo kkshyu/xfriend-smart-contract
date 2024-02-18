@@ -8,29 +8,37 @@ contract XToken is ERC20, ERC20Permit {
     constructor() ERC20("XToken", "XTK") ERC20Permit("XToken") {}
 
     function swapFrom(address addr, uint256 addrAmount) external {
-        uint256 totalSupply = totalSupply();
-        uint256 newTotalSupply = _getTotalXTK(addr, addrAmount);
+        uint256 totalXtkSupply = totalSupply();
+        uint256 totalAddrSupply = IERC20(addr).balanceOf(address(this));
+        uint256 newTotalXtkSupply = _getTotalXTK(
+            addr,
+            totalAddrSupply + addrAmount
+        );
         IERC20(addr).transferFrom(msg.sender, address(this), addrAmount);
-        _mint(msg.sender, newTotalSupply - totalSupply);
+        _mint(msg.sender, newTotalXtkSupply - totalXtkSupply);
     }
 
     function swapTo(address addr, uint256 addrAmount) external {
-        uint256 totalSupply = totalSupply();
-        uint256 newTotalSupply = _getTotalXTK(addr, addrAmount);
+        uint256 totalXtkSupply = totalSupply();
+        uint256 totalAddrSupply = IERC20(addr).balanceOf(address(this));
+        uint256 newTotalXtkSupply = _getTotalXTK(
+            addr,
+            totalAddrSupply - addrAmount
+        );
         IERC20(addr).transfer(msg.sender, addrAmount);
-        _mint(msg.sender, totalSupply - newTotalSupply);
+        _burn(msg.sender, totalXtkSupply - newTotalXtkSupply);
     }
 
-    function _getTotalXTK(address addr, uint256 amount)
+    function _getTotalXTK(address, uint256 amount)
         private
         pure
         returns (uint256)
     {
         // TODO: set different curve for different addr
-        return fourthRoot(amount**3 * 1e6);
+        return _fourthRoot(amount**3 * 1e6);
     }
 
-    function fourthRoot(uint256 x) public pure returns (uint256) {
+    function _fourthRoot(uint256 x) private pure returns (uint256) {
         if (x == 0) return 0;
         uint256 z = x / 4 + 1;
         uint256 y = x;

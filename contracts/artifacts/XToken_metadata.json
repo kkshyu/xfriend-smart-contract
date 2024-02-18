@@ -375,25 +375,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "x",
-						"type": "uint256"
-					}
-				],
-				"name": "fourthRoot",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "name",
 				"outputs": [
@@ -883,11 +864,11 @@
 			]
 		},
 		"contracts/XToken.sol": {
-			"keccak256": "0xfc9683af86787534d32075c5072a80f4ca102faf253f6708479d59a08e490a47",
+			"keccak256": "0x2ef6cec7a0b9332167ea62d7ae9f06b1a29419451bc85328f03579ed9aec3143",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3f07b9a048408e24806a4df9485abbfd4bb9b69ee76a26b45a66edd96235f109",
-				"dweb:/ipfs/QmXZpt2bCZC9BFq2drZ6smnpWLfUFa8sZp2mfP6p7F2Hmq"
+				"bzz-raw://a21e227bdc7efb8c613c03fb94de90b72c099d1b1e44b9a5c223a9febb79ad57",
+				"dweb:/ipfs/QmVfBxnhqsrpM7E9TaR6oUajQ3LBHqvB3EY5gX7W3YQbhQ"
 			]
 		}
 	},
